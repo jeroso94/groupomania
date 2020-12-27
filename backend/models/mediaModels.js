@@ -4,18 +4,19 @@
         a) module mongo-mask
 */
 
+
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('Users', {
-        email: { 
+    const Media = sequelize.define('Medias', {
+        userId:{
             type: DataTypes.STRING, 
-            allowNull: false, 
-            validate: { 
-                isEmail: true, 
-            }
+            allowNull: false
         },
-        password: { type: DataTypes.STRING, allowNull: false }
+        mediaUrl: { 
+            type: DataTypes.STRING, 
+            allowNull: false 
+        }
     });
-    return User;
+    return Media;
 };
 
 //const uniqueValidator = require('mongoose-unique-validator');

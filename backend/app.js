@@ -29,7 +29,8 @@ const helmet = require("helmet");
 
 // ACTION : Adapter le routage à Groupomania_SocialNetwork
 const userRoutes = require('./routes/userRoutes');
-//const sauceRoutes = require('./routes/sauceRoutes');
+const mediaRoutes = require('./routes/mediaRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 
 db.sequelize.sync()
 .then(() => console.log('Succès de connexion à mySQL !'))
@@ -52,8 +53,9 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(helmet());
 
 // ACTION : Adapter le routage à Groupomania_SocialNetwork
-//app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/api/medias', mediaRoutes);
+app.use('/api/comments', commentRoutes);
 
 
 module.exports = app;
