@@ -85,3 +85,10 @@ exports.optout = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
+
+
+exports.user = (req, res, next) => {
+  db.Users.findOne({where: { email: req.body.email }})
+    .then(user => res.send(user.email))
+    .catch(error => res.status(401).json({ error: 'Utilisateur non trouvé !' }));
+};
