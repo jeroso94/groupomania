@@ -1,10 +1,10 @@
 <template>
     <div class="sidebar">
-        <img src="../../public/icon.png" width="50%"/>
+        <img class="logo" src="../../public/icon.png" width="50%"/>
         <div class="title">
             <h1>Groupomania</h1> 
             <div class="hello">
-                <h3 v-if="user">Bienvenue {{user.email}} </h3>
+                <h3 v-if="user">Bienvenue {{user}} </h3>
                 <h3 v-if="!user">Non connecté !</h3>
             </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="menu-items" v-if="user">
             <router-link to="/" active-class="active" exact tag="button" class="side-btn">
                 <div class="link-container">
-                    💥 Brûlant
+                    🔥 Brûlant
                 </div>
             </router-link>
 
@@ -42,7 +42,7 @@
                 </div>
             </router-link>
 
-            <a href="javascript:void(0)" @click="handleClick" active-class="active" exact tag="button" class="side-btn">
+            <a href="http://localhost:8080/" @click="handleClick" active-class="active" exact tag="button" class="side-btn">
                 <div class="link-container">
                     👨🏻‍🚀❎ Se déconnecter
                 </div>
@@ -59,20 +59,29 @@
 
 <script>
 export default { 
-    props: ['user'],
+    data () {
+        return {
+            user : localStorage.getItem('user')
+        }
+    },
     methods: {
         handleClick() {
             localStorage.removeItem('token');
-            this.$router.push('/login');
+            localStorage.removeItem('user');
+            localStorage.removeItem('userid');
         }
     }
 }
 </script>
 
 <style scoped>
+    .logo {
+        border-radius: 90px;
+    }
+
     .title {
         color: white;
-        font-size: 24px;
+        font-size: 18px;
         margin-top: 10px;
     }
 
@@ -94,7 +103,7 @@ export default {
         position: relative;
         background-color: white;
         color: darkslateblue;
-        font-weight: 500;
+        font-weight: 700;
         margin-left: 10px;
         border-radius: 30px 0 0 30px;
     }

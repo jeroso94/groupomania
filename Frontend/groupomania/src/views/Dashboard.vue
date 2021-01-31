@@ -2,34 +2,18 @@
   <div class="dashboard">
     <Sidebar />
     <div class="content">
-      <router-view :user="user" />
+      <router-view/>
     </div>
   </div>
 </template>
 
 <script>
   import Sidebar from '../components/Sidebar.vue'
-  import axios from 'axios';
 
   export default {
     components: { Sidebar },
     name: 'Home',
-
-    data() {
-        return {
-            user: null
-        }
-    },
-
-    created() {
-        axios.get('api/auth/user')
-        .then(res => {
-            console.log(res);
-            this.user = res.data;
-        })
-        .catch(err => { console.log(err) });
-    }    
-  }
+  }  
 </script>
 
 <style scoped>

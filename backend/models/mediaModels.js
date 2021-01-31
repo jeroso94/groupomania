@@ -7,13 +7,17 @@
 
 module.exports = (sequelize, DataTypes) => {
     const Media = sequelize.define('Medias', {
-        userId:{
+        title: { 
             type: DataTypes.STRING, 
-            allowNull: false
+            allowNull: false 
         },
         mediaUrl: { 
             type: DataTypes.STRING, 
             allowNull: false 
+        },
+        userId:{
+            type: DataTypes.STRING, 
+            allowNull: false
         }
     });
     return Media;
