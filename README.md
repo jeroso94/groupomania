@@ -17,4 +17,7 @@ Le projet consiste à construire un réseau social interne pour les employés de
 (L'application va se recharger automatiquement si vous modifiez un fichier source.)
 
 # Serveur Frontend (groupomania/frontend)
-1. ...
+1. Exécuter 'npm install'.
+2. Exécuter 'npm run serve'
+3. Exécution de l’API sur http://localhost:8080.
+(L'application va se recharger automatiquement si vous modifiez un fichier source.)

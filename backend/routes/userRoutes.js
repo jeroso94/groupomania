@@ -8,6 +8,6 @@ router.post('/optout', auth, userCtrl.optout);
 router.post('/login', userCtrl.login);
 router.post('/logout', auth, userCtrl.logout);
 
-router.get('/user', auth, userCtrl.user);
+// router.get('/user', auth, userCtrl.user);
 
 module.exports = router;
