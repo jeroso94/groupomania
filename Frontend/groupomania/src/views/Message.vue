@@ -18,28 +18,11 @@
             </Tab>
 
             <Tab name="Mes publications"> 
-                <!-- <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Value</th>
-                </tr>
-                <tr>
-                    <td>Cheese</td>
-                    <td>Yellow</td>
-                </tr>
-                <tr>
-                    <td>Apple</td>
-                    <td>Red</td>
-                </tr>
-                </table> -->
-
                 <form @submit.prevent="display">
-                    <!-- <h2>😇 Mes publications 💅🏻</h2> -->
-
                     <button type="submit">Valider</button>
                     <ul id="example-1" class="listStyle">
                         <li v-for="record in records" :key="record.id">
-                            <h3>{{ record.title }}</h3>
+                            <h3>[{{record.id}}] {{ record.title }}</h3>
                             <img v-bind:src="record.mediaUrl" width="320px"/>
                             <p class="postedBy">Publié par: {{ record.email }}</p>
                             

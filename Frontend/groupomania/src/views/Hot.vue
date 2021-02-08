@@ -1,22 +1,29 @@
 <template>
     <div class="hot">
-        <form @submit.prevent="handleSubmit">
+        <form id="load" @submit.prevent="handleSubmit">
             <h2>🔥 Les dernières publications 🤏🏻</h2>
 
-            <button type="submit">Valider</button>
-            <ul id="example-1" class="listStyle">
-                <li v-for="record in records" :key="record.id">
-                    <h3>{{ record.title }}</h3>
-                    <img v-bind:src="record.mediaUrl" width="320px"/>
-                    <p class="postedBy">Publié par: {{ record.email }}</p>
-
-                    <form @submit.prevent="commentSubmit">
-                        <label for="comment">Commentaire:</label>
-                        <textarea id="comment" rows="2" v-model="comment" name="comment" placeholder="Réagissez..."></textarea>
-                        <button type="submit">Valider</button>
-                    </form>
-                </li>
-            </ul>
+            <button form="load" type="submit">Valider</button>
+            
+            <div v-for="record in recordList" :key="record.id">
+                <ul id="example-1" class="listStyle">
+                    <li>
+                        <h3>[post#id:{{ record.id }}] {{ record.title }}</h3>
+                        <img v-bind:src="record.mediaUrl" width="320px"/>
+                        <p class="postedBy">Publié par: {{ record.email }}</p>
+                    </li>
+                    <li v-for="comment in commentList" :key="comment.id">
+                        <p class="postedBy" v-if="record.id == comment.mediaId">[comment#id:{{comment.id}}] Réaction de {{ comment.email }} [pour post #id:{{ comment.mediaId }}]: {{ comment.comment }}</p>
+                    </li>
+                    <li>
+                        <form v-bind:id="record.id" @submit.prevent="commentSubmit($event)">
+                            <label v-bind:form="record.id" for="comment"> Commentaire: {{record.id}}</label>
+                            <textarea v-bind:form="record.id" rows="2" v-model="comment" name="comment" placeholder="Réagissez..."></textarea>
+                            <button v-bind:form="record.id" type="submit">Valider {{record.id}}</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </form>
     </div>
 </template>
@@ -26,42 +33,52 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            records: [],
+            recordList: [],
+            commentList: [],
             comment: ''
         }
     },
+
     methods:{
         handleSubmit(){
             axios.get('api/medias')
             .then(res => {
                 console.log(res.data);
-                this.records = res.data;
+                this.recordList = res.data;
+
+                axios.get('api/comments')
+                .then(resComments => {
+                    console.log(resComments.data);
+                    this.commentList = resComments.data;
+                })
             })
             .catch(err => { console.log(err) });
         },
 
-        async commentSubmit(){
-            const formdata = new FormData ();
-            formdata.append ('comment', this.comment);
-            formdata.append ('userid',localStorage.getItem('userid'));
-            
-            const token = localStorage.getItem('token');
-
+        async commentSubmit(event){
+            const data = {
+                'comment': this.comment,
+                'userid': localStorage.getItem('userid')
+            }
             console.log(this.comment);
             console.log(localStorage.getItem('userid'));
-            console.log(formdata);
+            console.log(data);
 
-            const uri = 'api/comments/24/'; // + this.records(id);
+            const token = localStorage.getItem('token');
+            console.log(token);
+
+            console.log(event.target.id);
+
+            const uri = 'api/comments/'+ event.target.id + '/';
             console.log (uri);
-            await axios.post(uri + 'comment', formdata,  {
+            await axios.post(uri + 'comment', data,  {
                 headers: {
                     'Authorization': `Bearer ${token}`,
-                    'Content-Type': `multipart/form-data`
                 }
             })
                 .then(res => {
                     console.log(res);
-                    this.$router.push('/');
+                    return this.$router.push('/');
                 })
                 .catch(err => { console.log(err) });
         }

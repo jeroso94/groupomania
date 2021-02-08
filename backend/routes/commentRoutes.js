@@ -8,5 +8,7 @@ const commentCtrl = require('../controllers/commentControllers');
 //Publier un commentaire sur une publication
 router.post('/:id/comment', auth, commentCtrl.comment);
 
+//Afficher tous les commentaires d'une publication
+router.get('/', commentCtrl.showAllComments);
 
 module.exports = router;
