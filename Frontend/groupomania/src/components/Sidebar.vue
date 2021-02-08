@@ -12,7 +12,7 @@
         <div class="menu-items" v-if="!user">
             <router-link to="/" active-class="active" exact tag="button" class="side-btn">
                 <div class="link-container">
-                    💥 Brûlant
+                    🔥 Brûlant
                 </div>
             </router-link>
 
