@@ -14,8 +14,8 @@ const routes = [
         component: () => import(/* webpackChunkName: "hot" */ '../views/Hot')
       },
       {
-        path:'/message',
-        component: () => import(/* webpackChunkName: "message" */ '../views/Message')
+        path:'/post',
+        component: () => import(/* webpackChunkName: "post" */ '../views/Post')
       },
       {
         path:'/login',

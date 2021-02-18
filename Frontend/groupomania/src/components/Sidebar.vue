@@ -4,8 +4,8 @@
         <div class="title">
             <h1>Groupomania</h1> 
             <div class="hello">
-                <h3 v-if="user">Bienvenue {{user}} </h3>
-                <h3 v-if="!user">Non connecté !</h3>
+                <h4 v-if="user">Bienvenue {{user}} </h4>
+                <h4 v-if="!user">Non connecté !</h4>
             </div>
         </div>
 
@@ -32,13 +32,13 @@
         <div class="menu-items" v-if="user">
             <router-link to="/" active-class="active" exact tag="button" class="side-btn">
                 <div class="link-container">
-                    🔥 Brûlant
+                    🔥 Surfer !
                 </div>
             </router-link>
 
-            <router-link to="/message" active-class="active" exact tag="button" class="side-btn">
+            <router-link to="/post" active-class="active" exact tag="button" class="side-btn">
                 <div class="link-container">
-                    🧻 Message
+                    🧻 Publier
                 </div>
             </router-link>
 
@@ -74,15 +74,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .logo {
+        margin-top: 30px;
+        // padding: 10px;
         border-radius: 90px;
     }
 
     .title {
+        padding: 5px;
         color: white;
         font-size: 18px;
-        margin-top: 10px;
     }
 
     .menu-items {
@@ -95,68 +97,70 @@ export default {
         margin-top: 60px;
     }
 
-    .side-btn:focus {
-        outline: none;
-    }
-
-    .side-btn.active {
-        position: relative;
-        background-color: white;
-        color: darkslateblue;
-        font-weight: 700;
-        margin-left: 10px;
-        border-radius: 30px 0 0 30px;
-    }
-
-    .side-btn.active::before {
-        position: absolute;
-        content: "";
-        top: -30px;
-        right: 0px;
-        height: 30px;
-        width: 30px;
-        background-color: white;
-    }
-
-    .side-btn.active::after {
-        position: absolute;
-        content: "";
-        bottom: -30px;
-        right: 0px;
-        height: 30px;
-        width: 30px;
-        background-color: white;
-    }
-
     .side-btn {
+        text-decoration: none;
         border: none;
         padding: 16px 0px;
         cursor: pointer;
         font-size: 16px;
+        font-weight: 700;
         color:white;
         background-color: transparent;
-    }
 
-    .side-btn.active .link-container::before {
-        position: absolute;
-        content: "";
-        top: -60px;
-        right: 0px;
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
-        background-color: darkslateblue;        
-    }
+        &:focus {
+            outline: none;
+        }
 
-    .side-btn.active .link-container::after {
-        position: absolute;
-        content: "";
-        bottom: -60px;
-        right: 0px;
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
-        background-color: darkslateblue;        
-        z-index: 99;
+        &.active {
+            position: relative;
+            background-color: white;
+            color: darkslateblue;
+            font-weight: 700;
+            margin-left: 10px;
+            border-radius: 30px 0 0 30px;
+
+            &::before {
+                position: absolute;
+                content: "";
+                top: -30px;
+                right: 0px;
+                height: 30px;
+                width: 30px;
+                background-color: white;
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                bottom: -30px;
+                right: 0px;
+                height: 30px;
+                width: 30px;
+                background-color: white;
+            }
+            
+            & .link-container::before {
+                position: absolute;
+                content: "";
+                top: -60px;
+                right: 0px;
+                height: 60px;
+                width: 60px;
+                border-radius: 50%;
+                background-color: darkslateblue;        
+            }
+
+            & .link-container::after {
+                position: absolute;
+                content: "";
+                bottom: -60px;
+                right: 0px;
+                height: 60px;
+                width: 60px;
+                border-radius: 50%;
+                background-color: darkslateblue;        
+                z-index: 99;
+            }
+        }
     }
 </style>
