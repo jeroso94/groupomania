@@ -31,7 +31,7 @@ exports.upload = (req, res, next) => {
 // GESTION DES PUBLICATIONS
 // READ Public - Méthode GET de mediaCtrl.showAllMedia
 exports.showAllMedia = (req, res, next) => {
-    db.sequelize.query("SELECT `Medias`.`id`, `Medias`.`title`, `Medias`.`mediaUrl`, `Users`.`email` FROM `Medias` INNER JOIN `Users` ON `Medias`.`userId`=`Users`.`id`", { type: QueryTypes.SELECT })
+    db.sequelize.query("SELECT `Medias`.`id`, `Medias`.`title`, `Medias`.`mediaUrl`, `Medias`.`updatedAt`, `Users`.`email` FROM `Medias` INNER JOIN `Users` ON `Medias`.`userId`=`Users`.`id`", { type: QueryTypes.SELECT })
         .then((medias) => res.status(200).json( medias ))
         .catch(() => res.status(404).json({ error: "Echec de récupération de la liste des publications" }));
 };
@@ -48,7 +48,7 @@ exports.showAllMedia = (req, res, next) => {
 // READ Authentifié - Méthode GET de mediaCtrl.showAllMediaPostedByMe
 exports.showAllMediaPostedByMe = (req, res, next) => {
     // db.Medias.findAll({where: { userId: req.params.id }})
-    db.sequelize.query("SELECT `Medias`.`id`, `Medias`.`title`, `Medias`.`mediaUrl`, `Users`.`email` FROM `Medias` INNER JOIN `Users` ON `Medias`.`userId`=`Users`.`id` WHERE `Medias`.`userId` = $userId", {
+    db.sequelize.query("SELECT `Medias`.`id`, `Medias`.`title`, `Medias`.`mediaUrl`, `Medias`.`updatedAt`, `Users`.`email` FROM `Medias` INNER JOIN `Users` ON `Medias`.`userId`=`Users`.`id` WHERE `Medias`.`userId` = $userId", {
             bind: { userId: req.params.id },
             type: QueryTypes.SELECT 
         })

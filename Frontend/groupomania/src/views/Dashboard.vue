@@ -21,7 +21,7 @@
     display: grid;
     grid-template-columns: 1fr 5fr;
     background-color: darkslateblue;
-    height: 100vh;
+    /* height: 100vh; */
     width: 100vw;
   }
 

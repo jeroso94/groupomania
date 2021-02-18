@@ -38,12 +38,16 @@
 </script>
 
 <style lang="scss" scoped>
-  .tabs {
+  article {
+    margin: 0 100px;
+  }
+
+  .tabs { 
     border-bottom: 1px solid #fefefe;
     margin: 0 10px;
   }
   .tabs-details {
-    padding: 10px;
+    padding: 10px 15%;
   }
   ul {
     display: flex;
@@ -53,6 +57,7 @@
       margin-right: 40px;
     }
     .nav-item {
+      color:lightblue;
       cursor: pointer;
       &:hover {
         color:darkslateblue;
