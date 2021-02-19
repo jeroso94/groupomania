@@ -9,17 +9,19 @@ module.exports = (sequelize, DataTypes) => {
     const Media = sequelize.define('Medias', {
         title: { 
             type: DataTypes.STRING, 
-            allowNull: false 
+            allowNull: false,
+            unique: true
         },
         mediaUrl: { 
-            type: DataTypes.STRING, 
-            allowNull: false 
+            type: DataTypes.TEXT, 
+            allowNull: false
         },
         userId:{
-            type: DataTypes.STRING, 
+            type: DataTypes.INTEGER, 
             allowNull: false
         }
     });
+    // Media.belongsTo(User);
     return Media;
 };
 

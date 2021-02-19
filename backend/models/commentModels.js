@@ -8,18 +8,20 @@
 module.exports = (sequelize, DataTypes) => {
     const Comment = sequelize.define('Comments', {
         comment: { 
-            type: DataTypes.STRING, 
-            allowNull: false 
+            type: DataTypes.TEXT, 
+            allowNull: false
         },
         mediaId: { 
-            type: DataTypes.STRING, 
-            allowNull: false 
+            type: DataTypes.INTEGER, 
+            allowNull: false
         },
         userId:{
-            type: DataTypes.STRING, 
+            type: DataTypes.INTEGER, 
             allowNull: false
         }
     });
+    // Comment.BelongsTo(Media);
+    // Comment.BelongsTo(User);
     return Comment;
 };
 

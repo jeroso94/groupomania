@@ -28,3 +28,11 @@ exports.showAllComments = (req, res, next) => {
         .catch(() => res.status(404).json({ error: "Echec de récupération de la liste des commentaires" }));
     
 };
+
+// GESTION DES COMMENTAIRES
+// DELETE Authentifié - Méthode DELETE de commentCtrl.delete
+exports.delete = (req, res, next) => {
+    db.Comments.destroy({where: { id: req.params.id }})           
+        .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
+        .catch(error => res.status(400).json({ error })); 
+};

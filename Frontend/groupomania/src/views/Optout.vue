@@ -1,17 +1,13 @@
 <template>
     <div class="optout">
-        <form @submit.prevent="handleSubmit">
-            <h3>❌ Suppression du profil 🧨</h3>
-
-            <div class="formStyle">
-                <input type="email" class="form-control" v-model="email" name="email" id="email" placeholder="Identifiant:pseudo@domain.com"/>
-            </div>
-
-            <div class="formStyle">
-                <input type="password" class="form-control" v-model="password" name="password" id="password" placeholder="Mot de passe"/>
-            </div>
-            <input type="submit" name="submit" value="Confirmer"/>
-        </form>
+        <header><h3>❌ Suppression du profil 🧨</h3></header>
+        <section>
+            <form class="formStyle" @submit.prevent="handleSubmit">
+                <label for="email"><input type="email" class="form-control" v-model="email" name="email" id="email" placeholder="Identifiant:pseudo@domain.com" title="email"/></label>
+                <label for="password"><input type="password" class="form-control" v-model="password" name="password" id="password" placeholder="Mot de passe" title="password"/></label>
+                <label for="submit"><input type="submit" name="submit" value="Confirmer"/></label>
+            </form>
+        </section>
     </div>
 </template>
 
@@ -45,9 +41,6 @@ export default {
 
 <style lang="scss" scoped>
     .optout {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         height: 100%;
         width: 100%;
         font-size: 30px;
@@ -55,34 +48,35 @@ export default {
         font-weight: 600;
     }
 
-    h3 {
-        margin-top: 70px;
-        margin-bottom: 150px;
+    header {
+        padding-top: 70px;
+        padding-bottom: 150px;
+    }
+
+    section {
+        margin-left : 10%;
+        margin-right : 10%;
     }
 
     .formStyle {
-        margin: auto;
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items:center;
-        color: lightblue;
+        margin: 15px;
+        color: lightcoral;
         font-size: 20px;
     }
 
     input[type='email'], input[type='password'] {
-        margin: 25px 5px 5px 5px;
-        width: 100%;
+        margin: 25px 0;
+        width: 99%;
         height: 50px;
         border-radius: 3px;
         border: 1px solid #CCC;
-        padding: 8px;
+        padding: 4px;
         font-size: 20px;
         font-family: Verdana;
         box-shadow: 1px 1px 5px #CCC;
         &:hover {
-            border: 3px solid lightblue;
-            padding: 8px;
+            border: 2px solid lightcoral;
+            padding: 4px;
             font-size: 20px;
             font-family: Verdana;
             box-shadow: 1px 1px 5px #CCC;
@@ -90,18 +84,18 @@ export default {
     }
 
     input[type='submit'] {
-        margin: 50px 5px 100% 5px;
+        margin: 25px 0 100% 0;
         width: 100%;
         height: 34px;
         border: 2px solid white;
-        background-color:lightblue;
+        background-color:lightcoral;
         font-family: Verdana;
         font-weight: 600;
         font-size: 12px;
         cursor: pointer;
         &:hover {
             border: 2px solid white;
-            background-color:darkslateblue;
+            background-color:black;
             color:#fff;
         }
     }

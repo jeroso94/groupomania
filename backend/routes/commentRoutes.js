@@ -11,4 +11,7 @@ router.post('/:id/comment', auth, commentCtrl.comment);
 //Afficher tous les commentaires d'une publication
 router.get('/', commentCtrl.showAllComments);
 
+//Supprimer un commentaire
+router.delete('/:id', auth, commentCtrl.delete);
+
 module.exports = router;
