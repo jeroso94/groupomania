@@ -1,15 +1,13 @@
 <template>
-    <div class="sidebar">
-        <img class="logo" src="../../public/icon.png" width="50%"/>
-        <div class="title">
+    <section class="sidebar">
+        <header class="title">
+            <img class="logo" src="../../public/icon.png" width="50%" alt="Logo Groupomania"/>
             <h1>Groupomania</h1> 
-            <div class="hello">
-                <h4 v-if="user">Bienvenue {{user}} </h4>
-                <h4 v-if="!user">Non connecté !</h4>
-            </div>
-        </div>
+            <p v-if="user">Bienvenue {{user}} </p>
+            <p v-if="!user">Non connecté !</p>
+        </header>
 
-        <div class="menu-items" v-if="!user">
+        <nav class="menu-items" v-if="!user">
             <router-link to="/" active-class="active" exact tag="button" class="side-btn">
                 <div class="link-container">
                     🔥 Brûlant
@@ -27,9 +25,9 @@
                     📔 S'inscrire
                 </div>
             </router-link>
-        </div>
+        </nav>
 
-        <div class="menu-items" v-if="user">
+        <nav class="menu-items" v-if="user">
             <router-link to="/" active-class="active" exact tag="button" class="side-btn">
                 <div class="link-container">
                     🔥 Surfer !
@@ -53,8 +51,16 @@
                     ❌ Supprimer mon profil
                 </div>
             </router-link>
-        </div>
-    </div>
+        </nav>
+        
+        <footer>
+            <p>
+                <a href="https://achecker.ca/checker/index.php?uri=referer&gid=WCAG2-AA">
+                <img src="https://achecker.ca/images/icon_W2_aa.jpg" alt="WCAG 2.0 (Level AA)" height="32" width="102" />
+                </a>
+            </p>
+        </footer>
+    </section>
 </template>
 
 <script>
@@ -66,9 +72,7 @@ export default {
     },
     methods: {
         handleClick() {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            localStorage.removeItem('userid');
+            localStorage.clear();
         }
     }
 }
@@ -114,7 +118,7 @@ export default {
         &.active {
             position: relative;
             background-color: white;
-            color: darkslateblue;
+            color: black;
             font-weight: 700;
             margin-left: 10px;
             border-radius: 30px 0 0 30px;
@@ -147,7 +151,7 @@ export default {
                 height: 60px;
                 width: 60px;
                 border-radius: 50%;
-                background-color: darkslateblue;        
+                background-color: black;        
             }
 
             & .link-container::after {
@@ -158,7 +162,7 @@ export default {
                 height: 60px;
                 width: 60px;
                 border-radius: 50%;
-                background-color: darkslateblue;        
+                background-color: black;        
                 z-index: 99;
             }
         }

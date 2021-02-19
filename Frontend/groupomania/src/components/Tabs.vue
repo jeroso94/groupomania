@@ -1,6 +1,6 @@
 <template>
-  <article>
-    <header class="tabs">
+  <section>
+    <nav class="tabs">
       <ul>
         <li v-for="(tab, index) in tabs" :key="index">
           <div class="nav-item"
@@ -10,11 +10,11 @@
           </div>
         </li>
       </ul>
-    </header>
-    <section class="tabs-details">
+    </nav>
+    <article class="tabs-details">
       <slot></slot>
-    </section>
-  </article>
+    </article>
+  </section>
 </template>
 
 <script>
@@ -38,16 +38,15 @@
 </script>
 
 <style lang="scss" scoped>
-  article {
-    margin: 0 100px;
+  section {
+    margin: 0 10%;
   }
 
   .tabs { 
     border-bottom: 1px solid #fefefe;
-    margin: 0 10px;
   }
   .tabs-details {
-    padding: 10px 15%;
+    padding: 10px 0px;
   }
   ul {
     display: flex;
@@ -57,13 +56,13 @@
       margin-right: 40px;
     }
     .nav-item {
-      color:lightblue;
+      color:lightcoral;
       cursor: pointer;
       &:hover {
-        color:darkslateblue;
+        color:black;
       }
       &.is-active {
-        color:darkslateblue;
+        color:black;
       }
     }
   }

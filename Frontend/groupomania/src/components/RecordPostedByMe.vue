@@ -2,12 +2,12 @@
     <ul class="listStyle" >
         <li><h4>{{ record.title }} ({{ record.updatedAt }})</h4></li>
         <li class="listContent">
-            <img v-bind:src="record.mediaUrl" width="320px"/>
+            <img v-bind:src="record.mediaUrl" width="320px" alt="Illustration"/>
             <p class="postedBy">(<span class="postedByLabel">Publié par</span>: {{ record.email }})</p>
         </li>
         <li>
-            <form @submit.prevent="deleteIt">
-                <input type="submit" name="submit" value="Supprimer"/>
+            <form @submit.prevent="postDelete">
+                <input type="submit" name="delete" value="Supprimer"/>
             </form>
         </li>
     </ul>
@@ -19,7 +19,7 @@ export default {
     props: ['record'],
 
     methods:{
-        deleteIt () {
+        postDelete() {
             const token = localStorage.getItem('token');
             console.log(token);
 
@@ -32,6 +32,7 @@ export default {
             })
                 .then(res => {
                     console.log(res);
+                    window.history.go();
                 })
                 .catch(err => { console.log(err) });                
         }    
@@ -43,7 +44,7 @@ export default {
     .listStyle {
         list-style-type: none;
         text-align: justify;
-        color: lightblue;
+        color: lightcoral;
         font-size: 20px;
         font-weight: 500;
     }
@@ -70,7 +71,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items:center;
-        color: lightblue;
+        color: lightcoral;
         font-size: 20px;
     }
 </style>

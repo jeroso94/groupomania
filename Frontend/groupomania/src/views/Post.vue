@@ -1,18 +1,12 @@
 <template>
     <div class="post">
-        <h3>🧻 Publication ✍🏻</h3>
+        <header><h3>🧻 Publication ✍🏻</h3></header>
         <Tabs>
             <Tab name="Ajouter" selected="true"> 
-                <form @submit.prevent="handleSubmit">           
-                    <div class="formStyle">
-                        <textarea class="form-control" id="description" rows="2" v-model="description" name="description" placeholder="Description de l'intérêt de cette diffusion"></textarea>
-                    </div>
-                    <div class="formStyle">
-                        <input id="file-upload" name="media" type="file" accept="image/*">
-                    </div>
-                    <div class="formStyle">
-                        <input type="submit" name="submit" value="Publier"/>
-                    </div>
+                <form class="formStyle" @submit.prevent="handleSubmit">
+                    <label for="description"><textarea class="form-control" id="description" rows="2" v-model="description" name="description" placeholder="Description de l'intérêt de cette diffusion" title="description"></textarea></label>
+                    <label for="file-upload"><input id="file-upload" name="media" type="file" accept="image/*" title="file-upload"></label>
+                    <label for="submit"><input type="submit" name="submit" value="Publier"/></label>
                 </form>
             </Tab>
 
@@ -84,9 +78,6 @@
 
 <style lang="scss" scoped>
     .post {
-        // display: flex;
-        // justify-content: center ;
-        // align-items: center;
         height: 100%;
         width: 100%;
         font-size: 30px;
@@ -94,34 +85,29 @@
         font-weight: 600;
     }
 
-    h3 {
-        margin-top: 70px;
-        margin-bottom: 150px;
+    header {
+        padding-top: 70px;
+        padding-bottom: 150px;
     }
 
     .formStyle {
-        margin: auto;
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items:center;
-        color: lightblue;
+        margin: 15px;
+        color: lightcoral;
         font-size: 20px;
     }
 
     textarea {
-        margin: 25px 5px 5px 5px;
-        width: 100%;
+        width: 99%;
         height: 50px;
         border-radius: 3px;
         border: 1px solid #CCC;
-        padding: 8px;
+        padding: 4px;
         font-size: 20px;
         font-family: Verdana;
         box-shadow: 1px 1px 5px #CCC;
         &:hover {
-            border: 3px solid lightblue;
-            padding: 8px;
+            border: 2px solid lightcoral;
+            padding: 4px;
             font-size: 20px;
             font-family: Verdana;
             box-shadow: 1px 1px 5px #CCC;
@@ -129,35 +115,35 @@
     }
 
     input[type='file'] {
-        margin: 25px 5px 5px 5px;
+        margin: 25px 0;
         width: 100%;
         border: 2px solid white;
-        background-color:lightblue;
+        // background-color:lightcoral;
         font-family: Verdana;
         font-weight: 600;
         font-size: 12px;
-        color:darkslateblue;
+        color:black;
         cursor: pointer;
         &:hover {
             border: 2px solid white;
-            background-color:darkslateblue;
+            background-color:black;
             color:#fff;
         }
     }
 
     input[type='submit'] {
-        margin: 50px 5px 100% 5px;
+        margin: 25px 0 100% 0;
         width: 100%;
         height: 34px;
         border: 2px solid white;
-        background-color:lightblue;
+        background-color:lightcoral;
         font-family: Verdana;
         font-weight: 600;
         font-size: 12px;
         cursor: pointer;
         &:hover {
             border: 2px solid white;
-            background-color:darkslateblue;
+            background-color:black;
             color:#fff;
         }
     }
