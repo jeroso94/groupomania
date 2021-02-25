@@ -7,15 +7,12 @@ const multer = require('../middlewares/multer-config');
 const mediaCtrl = require('../controllers/mediaControllers');
 
 //Publier un media
-router.post('/upload', auth, multer, mediaCtrl.upload);
+router.post('/upload/:userid', auth, multer, mediaCtrl.upload);
 
 //Afficher toutes les publications que j'ai posté
-router.get('/:id', auth, mediaCtrl.showAllMediaPostedByMe);
+router.get('/:userid', auth, mediaCtrl.showAllMediaPostedByMe);
 
 //Afficher toutes les publications
-router.get('/', mediaCtrl.showAllMedia);
-
-//Supprimer un media
-router.delete('/:id', auth, mediaCtrl.delete);
+router.get('/load/:userid', auth, mediaCtrl.showAllMedia);
 
 module.exports = router;

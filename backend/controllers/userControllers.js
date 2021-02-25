@@ -11,6 +11,12 @@ const bcrypt = require ('bcrypt');
 
 // Inscription
 exports.signup = (req, res, next) => {
+  try {
+    if (!isValidEmail(req.body.email)) throw 'Invalid Email !'  
+  } catch (error) {
+    res.status(401).json({ error: error });
+  }
+  
   db.Users.findOne({where: { email: req.body.email }})
   .then(user => {
     if (user) {
@@ -97,9 +103,8 @@ exports.optout = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
-
-// exports.user = (req, res, next) => {
-//   db.Users.findOne({where: { email: req.body.email }})
-//     .then(user => res.send(user.email))
-//     .catch(error => res.status(401).json({ error: 'Utilisateur non trouvé !' }));
-// };
+    // RegEx pour Email
+    function isValidEmail(value) {	
+      // Thanks to https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+      return /\S+@\S+\.\S+/gi.test(value);
+  }

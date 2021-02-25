@@ -10,7 +10,7 @@ const routes = [
     component: Dashboard,
     children: [
       {
-        path:'',
+        path:'/hot',
         component: () => import(/* webpackChunkName: "hot" */ '../views/Hot')
       },
       {
@@ -18,7 +18,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "post" */ '../views/Post')
       },
       {
-        path:'/login',
+        path:'',
         component: () => import(/* webpackChunkName: "login" */ '../views/Login')
       },
       {

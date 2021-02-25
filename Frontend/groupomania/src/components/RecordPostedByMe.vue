@@ -2,41 +2,15 @@
     <ul class="listStyle" >
         <li><h4>{{ record.title }} ({{ record.updatedAt }})</h4></li>
         <li class="listContent">
-            <img v-bind:src="record.mediaUrl" width="320px" alt="Illustration"/>
+            <img class="picture" :src="record.mediaUrl" alt="Illustration"/>
             <p class="postedBy">(<span class="postedByLabel">Publié par</span>: {{ record.email }})</p>
-        </li>
-        <li>
-            <form @submit.prevent="postDelete">
-                <input type="submit" name="delete" value="Supprimer"/>
-            </form>
         </li>
     </ul>
 </template>
 
 <script>
-import axios from 'axios';
 export default {
-    props: ['record'],
-
-    methods:{
-        postDelete() {
-            const token = localStorage.getItem('token');
-            console.log(token);
-
-            console.log(this.record.id);
-
-            axios.delete('api/medias/' + this.record.id, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                }
-            })
-                .then(res => {
-                    console.log(res);
-                    window.history.go();
-                })
-                .catch(err => { console.log(err) });                
-        }    
-    }
+    props: ['record']
 }
 </script>
 
@@ -51,6 +25,10 @@ export default {
 
     .listContent {
         text-align: center;
+    }
+
+    .picture {
+        block-size: 20vmax ;
     }
 
     .postedByLabel {

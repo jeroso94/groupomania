@@ -14,19 +14,20 @@ export default {
         return {
             recordList: [],
             commentList: [],
-            commentField: ''
+            commentField: '',
+            userid: localStorage.getItem('userid')
         }
     },
 
     created() {
-        axios.get('api/medias')
+        axios.get('api/medias/load/' + this.userid)
         .then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             this.recordList = res.data;
 
-            axios.get('api/comments')
+            axios.get('api/comments/load/' + this.userid)
             .then(resComments => {
-                console.log(resComments.data);
+                // console.log(resComments.data);
                 this.commentList = resComments.data;
             })
         })
@@ -40,13 +41,12 @@ export default {
     .hot {
         height: 100%;
         width: 100%;
-        font-size: 30px;
+        font-size: 2rem;
         color: lightgrey;
         font-weight: 600;
     }
-
+    
     header {
-        margin-top: 70px;
-        margin-bottom: 150px;
+        padding-bottom: 2%;
     }
 </style>

@@ -3,7 +3,7 @@
         <header><h3>❌ Suppression du profil 🧨</h3></header>
         <section>
             <form class="formStyle" @submit.prevent="handleSubmit">
-                <label for="email"><input type="email" class="form-control" v-model="email" name="email" id="email" placeholder="Identifiant:pseudo@domain.com" title="email"/></label>
+                <label for="email"><input type="email" class="form-control" v-model="email" name="email" id="email" placeholder="pseudo@groupomania.fr" title="email"/></label>
                 <label for="password"><input type="password" class="form-control" v-model="password" name="password" id="password" placeholder="Mot de passe" title="password"/></label>
                 <label for="submit"><input type="submit" name="submit" value="Confirmer"/></label>
             </form>
@@ -28,12 +28,14 @@ export default {
             };
             //console.log(data);
             axios.post('api/auth/optout', data)
-            .then(res => {
-                console.log(res);
-                localStorage.removeItem('token');
-                this.$router.push('/signup');
+            .then(() => {
+            // .then(res => {
+            //     console.log(res);
+                localStorage.clear();
+                window.history.go();
             })
             .catch(err => { console.log(err) });
+            this.$router.push('/signup');
         }
     }
 }
@@ -43,14 +45,13 @@ export default {
     .optout {
         height: 100%;
         width: 100%;
-        font-size: 30px;
+        font-size: 2rem;
         color: lightgrey;
         font-weight: 600;
     }
 
     header {
-        padding-top: 70px;
-        padding-bottom: 150px;
+        padding-bottom: 2%;
     }
 
     section {
@@ -71,7 +72,7 @@ export default {
         border-radius: 3px;
         border: 1px solid #CCC;
         padding: 4px;
-        font-size: 20px;
+        font-size: 1rem;
         font-family: Verdana;
         box-shadow: 1px 1px 5px #CCC;
         &:hover {
@@ -90,8 +91,8 @@ export default {
         border: 2px solid white;
         background-color:lightcoral;
         font-family: Verdana;
-        font-weight: 600;
-        font-size: 12px;
+        // font-weight: 600;
+        font-size: 1rem;
         cursor: pointer;
         &:hover {
             border: 2px solid white;

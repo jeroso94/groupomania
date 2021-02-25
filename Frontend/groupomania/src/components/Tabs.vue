@@ -56,12 +56,15 @@
       margin-right: 40px;
     }
     .nav-item {
+      font-size: 1.5rem;
       color:lightcoral;
       cursor: pointer;
       &:hover {
+        border-bottom: 3px solid;
         color:black;
       }
       &.is-active {
+        border-bottom: 3px solid;
         color:black;
       }
     }
