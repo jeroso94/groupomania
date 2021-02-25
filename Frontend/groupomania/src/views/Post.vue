@@ -49,26 +49,29 @@
 
                 // console.log(this.media);
                 // console.log(this.user);
-                console.log(formdata);
-                await axios.post('api/medias/upload', formdata,  {
+                // console.log(formdata);
+                const uri = 'api/medias/upload/' + this.userid;
+                // console.log(uri);
+                await axios.post(uri, formdata,  {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': `multipart/form-data`
                     }
                 })
-                    .then(res => {
-                        console.log(res);
-                        this.$router.push('/');
+                    .then(() => {
+                    // .then(res => {
+                    //     console.log(res);
+                        this.$router.push('/hot');
                     })
                     .catch(err => { console.log(err) });
             }
         },
         created(){
             const uri = 'api/medias/' + this.userid;
-            console.log (uri);
+            // console.log (uri);
             axios.get(uri)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 this.recordList = res.data;
             })
             .catch(err => { console.log(err) });
@@ -80,14 +83,13 @@
     .post {
         height: 100%;
         width: 100%;
-        font-size: 30px;
+        font-size: 2rem;
         color: lightgrey;
         font-weight: 600;
     }
 
     header {
-        padding-top: 70px;
-        padding-bottom: 150px;
+        padding-bottom: 2%;
     }
 
     .formStyle {
@@ -102,13 +104,13 @@
         border-radius: 3px;
         border: 1px solid #CCC;
         padding: 4px;
-        font-size: 20px;
+        font-size: 1rem;
         font-family: Verdana;
         box-shadow: 1px 1px 5px #CCC;
         &:hover {
             border: 2px solid lightcoral;
             padding: 4px;
-            font-size: 20px;
+            font-size: 1rem;
             font-family: Verdana;
             box-shadow: 1px 1px 5px #CCC;
         }
@@ -121,7 +123,7 @@
         // background-color:lightcoral;
         font-family: Verdana;
         font-weight: 600;
-        font-size: 12px;
+        font-size: 1rem;
         color:black;
         cursor: pointer;
         &:hover {
@@ -138,8 +140,8 @@
         border: 2px solid white;
         background-color:lightcoral;
         font-family: Verdana;
-        font-weight: 600;
-        font-size: 12px;
+        // font-weight: 600;
+        font-size: 1rem;
         cursor: pointer;
         &:hover {
             border: 2px solid white;

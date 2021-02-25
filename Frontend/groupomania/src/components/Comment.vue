@@ -1,5 +1,5 @@
 <template>
-    <div v-if="record.id == comment.mediaId">
+    <div class="commentContent" v-if="record.id == comment.mediaId">
         <form @submit.prevent="commentDelete">
             <label for="delete"><input type="submit" name="delete" value="Supprimer" v-if="isadmin === 'true'"/></label>
         </form>
@@ -14,24 +14,26 @@ export default {
 
     data() {
         return {
-            isadmin : localStorage.getItem('isadmin')
+            isadmin : localStorage.getItem('isadmin'),
+            userid: localStorage.getItem('userid')
         }
     },
 
     methods:{
         commentDelete(){
             const token = localStorage.getItem('token');
-            console.log(token);
 
-            console.log(this.comment.id);
+            // console.log(token);
+            // console.log(this.comment.id);
 
-            axios.delete('api/comments/' + this.comment.id, {
+            axios.delete('api/comments/delete/' + this.comment.id + '/' + this.userid, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 }
             })
-                .then(res => {
-                    console.log(res);
+                .then(() => {
+                // .then(res => {
+                    // console.log(res);
                     window.history.go();
                 })
                 .catch(err => { console.log(err) });   
@@ -44,34 +46,34 @@ export default {
     input {
         margin: 5px;
         cursor: pointer;
-        // width: 150px;
         height: 34px;
         border: 2px solid white;
         background-color:lightcoral;
         font-family: Verdana;
-        font-weight: 600;
-        font-size: 12px;
+        font-size: 0.7rem;
         &:hover {
-            // width: 150px;
-            // height: 34px;
             border: 2px solid white;
             background-color:black;
             color:#fff;
         }
     }
     
-    .commentedByLabel {
-        font-style: normal;
-        border-bottom-style:solid;
-        
+    .commentContent {
+        display: flex;
+        align-items: center;
     }
-
     .commentedBy {
         margin-top: 5px;
         margin-bottom: 0px;
-        font-size: 20px;
+        font-size: 1rem;
         font-style: italic;
         color: lightcoral;
+        
+    }
+    
+    .commentedByLabel {
+        font-style: normal;
+        border-bottom: 1px solid;
         
     }
 </style>
